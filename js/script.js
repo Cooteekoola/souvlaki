@@ -42,9 +42,8 @@ const cartWrapper = document.querySelector('.cart__wrapper'),
 
 			cartWrapper.appendChild(item);
 			if (empty) {
-				empty.remove();
-				//style.display = 'block';
-			}
+				empty.style.display = 'none';
+			} 
 
 			calcTotal();
 			removeFromCart();
@@ -101,6 +100,12 @@ const cartWrapper = document.querySelector('.cart__wrapper'),
 				btn.parentElement.remove();
 				calcGoods(0);
 				calcTotal();
+
+				items = cartWrapper.querySelectorAll('.goods__item');
+				empty = cartWrapper.querySelector('.empty');
+				if (items.length == 0) {
+					empty.style.display = 'block';					
+				}
 			});
 		});
 	}
