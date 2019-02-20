@@ -34,7 +34,7 @@ const cartWrapper = document.querySelector('.cart__wrapper'),
 			trigger.remove();
 
 			showConfirm();
-			calcGoods(1);
+			
 
 			removeBtn.classList.add('goods__item-remove');
 			removeBtn.innerHTML = '&times';
@@ -43,8 +43,9 @@ const cartWrapper = document.querySelector('.cart__wrapper'),
 			cartWrapper.appendChild(item);
 			if (empty) {
 				empty.style.display = 'none';
-			} 
+			}
 
+			calcGoods();
 			calcTotal();
 			removeFromCart();
 		});
@@ -79,9 +80,9 @@ const cartWrapper = document.querySelector('.cart__wrapper'),
 		}
 	}
 
-	function calcGoods(i) {
+	function calcGoods() {
 		const items = cartWrapper.querySelectorAll('.goods__item');
-		badge.textContent = i + items.length;
+		badge.textContent = items.length;
 	}
 	
 	function calcTotal() {
@@ -98,7 +99,7 @@ const cartWrapper = document.querySelector('.cart__wrapper'),
 		removeBtn.forEach(function(btn) {
 			btn.addEventListener('click', () => {
 				btn.parentElement.remove();
-				calcGoods(0);
+				calcGoods();
 				calcTotal();
 
 				items = cartWrapper.querySelectorAll('.goods__item');
@@ -111,3 +112,6 @@ const cartWrapper = document.querySelector('.cart__wrapper'),
 	}
 });
 
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(json => console.log(json))
